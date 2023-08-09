@@ -8,14 +8,10 @@ def handle_client(client_socket, client_address):
     try:
         print(f"Accepted connection from {client_address[0]}:{client_address[1]}")
         
-        # Receive data from the client
         data = client_socket.recv(BUFFER_SIZE).decode('utf-8')
         print(f"Received data from {client_address[0]}:{client_address[1]}: {data}")
-
-        # Perform some condition check on the received data
         condition_result = check_condition(data)
         
-        # Send the result (True or False) back to the client
         response = str(condition_result)
         client_socket.send(response.encode('utf-8'))
     except Exception as e:
